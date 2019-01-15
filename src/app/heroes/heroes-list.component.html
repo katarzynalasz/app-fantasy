@@ -1,0 +1,7 @@
+<form #addHeroForm="ngForm" (ngSubmit)="addHero(addHeroForm.value)">
+    <input name="heroName" [(ngModel)]="heroName" placeholder="Add hero"> 
+    <button>Submit</button>    
+</form>
+<li *ngFor="let hero of heroes"  [routerLink]="['/heroes', hero.heroId]">
+    {{hero.heroName}}
+</li>
