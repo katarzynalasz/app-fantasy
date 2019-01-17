@@ -1,5 +1,5 @@
 import { HeroesService } from './heroes/heroes.service';
-import { SkillsService } from './heroes/skills.service';
+import { SkillsService } from './skills/skills.service';
 import { routes } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,12 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HeroesListComponent } from './heroes/heroes-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActionsListComponent } from './actions/actions-list.component';
+import { ActionsService } from './actions/actions.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroDetailsComponent,
-    HeroesListComponent
+    HeroesListComponent,
+    ActionsListComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -25,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [SkillsService,
-  HeroesService],
+  HeroesService,
+  ActionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

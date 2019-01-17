@@ -1,5 +1,24 @@
 
 {{hero.heroName}}
+<nav>
+    <ul>
+        <li>
+            <a [routerLink]="['actions']">
+                Actions
+            </a>
+        </li>
+        <li>
+            <a href="">
+                Characters sheet
+            </a>
+        </li>
+        <li>
+            <a href="">
+                Actions settings
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <form autocomplete="off" #skillsForm="ngForm" (ngSubmit)="editSkills(skillsForm.values)">
     <li  *ngFor="let skill of currentHeroSkills;">
@@ -15,3 +34,4 @@
     <button type="submit">Submit</button>
 </form>
     
+<router-outlet></router-outlet>

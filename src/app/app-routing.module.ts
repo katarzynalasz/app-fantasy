@@ -1,3 +1,4 @@
+import { ActionsListComponent } from './actions/actions-list.component';
 import { HeroesListComponent } from './heroes/heroes-list.component';
 import { HeroDetailsComponent } from "./heroes/hero-details.component";
 import { NgModule } from '@angular/core';
@@ -6,7 +7,20 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   { path: 'heroes', component: HeroesListComponent },
-  { path: 'heroes/:id', component: HeroDetailsComponent},
+  { path: 'heroes/:id',
+    component: HeroDetailsComponent,
+    children: [
+    //   {
+    //   path: '',
+    //   redirectTo: 'actions',
+    //   pathMatch: 'full'
+    // },
+      {
+        path: 'actions',
+        component: ActionsListComponent
+      }
+    ]
+  },
   { path: '', redirectTo: '/heroes', pathMatch: 'full'}
 ];
 

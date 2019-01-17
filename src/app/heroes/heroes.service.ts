@@ -7,7 +7,7 @@ export class HeroesService {
 
     addHero(formValues) {
         const Hero: IHero = {
-            heroId: 100,
+            heroId: HEROES.length + 1,
             heroName: formValues.heroName
         };
         HEROES.push(Hero);

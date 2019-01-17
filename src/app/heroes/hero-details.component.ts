@@ -1,4 +1,4 @@
-import { SkillsService } from './skills.service';
+import { SkillsService } from './../skills/skills.service';
 import { HeroesService } from './heroes.service';
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -21,7 +21,7 @@ export class HeroDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.hero = this.heroesService.getHero(
       +this.route.snapshot.params['id']);
-      this.getSkills = this.skillService.getSkills(this.hero);
+      this.getSkills = this.skillService.getSkills(this.hero.heroId);
       this.currentHeroSkills = this.getSkills.map(a => Object.assign({}, a));
   }
 
