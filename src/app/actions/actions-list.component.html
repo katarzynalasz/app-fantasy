@@ -1,0 +1,22 @@
+<li *ngFor="let action of heroConditionalActions" (click)="logRollDice(action)">
+  {{action.actionName}}
+
+  </li>
+
+  <div>
+    Logs of throwing a dice:
+    name: number
+  </div>
+
+
+<div *ngIf="showLogs">
+  <div *ngFor="let action of actionsLog">
+  {{action.actionName}}
+  <div *ngIf="action.actionSucceeded === 'true'">
+    Action succeeded.
+  </div>
+  <div *ngIf="action.actionSucceeded === 'false'">
+    Action failed
+   </div>
+  </div>
+</div>
