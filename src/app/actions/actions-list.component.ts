@@ -39,7 +39,6 @@ export class ActionsListComponent implements OnInit {
      action.actionSucceeded = actionSucceeded;
      const newAction = Object.assign({}, action);
      this.actionsLog.push(newAction);
-     console.log(newAction)
      this.showLogs = true;
   }
 

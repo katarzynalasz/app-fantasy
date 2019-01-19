@@ -1,6 +1,5 @@
 import { ActionsSettingsComponent } from './actions/actions-settings.component';
 import { CharacterSheetComponent } from './actions/character-sheet.component';
-import { AddActionComponent } from './actions/add-action.component';
 import { ActionsListComponent } from './actions/actions-list.component';
 import { HeroesListComponent } from './heroes/heroes-list.component';
 import { HeroDetailsComponent } from "./heroes/hero-details.component";

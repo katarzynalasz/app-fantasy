@@ -12,7 +12,6 @@ export class SkillsService {
     }
 
     updateHeroSkills(currentHeroSkills) {
-        console.log(currentHeroSkills)
 
         HERO_SKILLS.map(function(x) {
             delete x.skillName;
@@ -20,7 +19,6 @@ export class SkillsService {
             if (result.length > 0) { x.value = Number(result[0].value); }
             return x;
         });
-         console.log(HERO_SKILLS);
     }
 
 
