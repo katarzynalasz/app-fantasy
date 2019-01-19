@@ -18,6 +18,9 @@ export class ActionsListComponent implements OnInit {
   currentHeroSkills: any;
   actionsLog = [];
   showLogs = false;
+  simpleItems = [true, 'Two', 3];
+  
+  selectedSimpleItem;
 
   constructor( private actionsService: ActionsService,
     private skillsService: SkillsService,
@@ -38,10 +41,11 @@ export class ActionsListComponent implements OnInit {
      action.actionSucceeded = actionSucceeded;
      const newAction = Object.assign({}, action);
      this.actionsLog.push(newAction);
+     console.log(newAction)
      this.showLogs = true;
   }
 
-  rollDices(dicesQuantity, diceType, modifier) {
+  rollDices(dicesQuantity: number, diceType: number, modifier: number) {
     const min = 1;
     let sum = 0;
     for (let i = 0; i < dicesQuantity; i++) {

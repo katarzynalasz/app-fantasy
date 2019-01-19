@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HeroesService } from './heroes/heroes.service';
 import { SkillsService } from './skills/skills.service';
 import { routes } from './app-routing.module';
@@ -12,6 +13,7 @@ import { HeroesListComponent } from './heroes/heroes-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActionsListComponent } from './actions/actions-list.component';
 import { ActionsService } from './actions/actions.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ActionsService } from './actions/actions.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
+    CommonModule
   ],
   providers: [SkillsService,
   HeroesService,
