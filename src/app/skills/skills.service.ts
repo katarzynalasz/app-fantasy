@@ -12,12 +12,15 @@ export class SkillsService {
     }
 
     updateHeroSkills(currentHeroSkills) {
+        console.log(currentHeroSkills)
+
         HERO_SKILLS.map(function(x) {
             delete x.skillName;
             const result = currentHeroSkills.filter(a1 => ((a1.skillId === x.skillId) && (a1.heroId === x.heroId)));
             if (result.length > 0) { x.value = Number(result[0].value); }
             return x;
         });
+         console.log(HERO_SKILLS);
     }
 
 

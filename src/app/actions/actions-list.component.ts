@@ -18,9 +18,7 @@ export class ActionsListComponent implements OnInit {
   currentHeroSkills: any;
   actionsLog = [];
   showLogs = false;
-  simpleItems = [true, 'Two', 3];
-  
-  selectedSimpleItem;
+
 
   constructor( private actionsService: ActionsService,
     private skillsService: SkillsService,

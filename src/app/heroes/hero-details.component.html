@@ -1,5 +1,10 @@
+<a routerLink="/heroes">
+    Back
+</a>
 
-{{hero.heroName}}
+<div>
+    {{hero.heroName}}
+</div>
 <nav>
     <ul>
         <li>
@@ -8,30 +13,18 @@
             </a>
         </li>
         <li>
-            <a href="">
+            <a [routerLink]="['character-sheet']">
                 Characters sheet
             </a>
         </li>
         <li>
-            <a href="">
+            <a [routerLink]="['actions-settings']">
                 Actions settings
             </a>
         </li>
     </ul>
 </nav>
 
-<form autocomplete="off" #skillsForm="ngForm" (ngSubmit)="editSkills(skillsForm.values)">
-    <li  *ngFor="let skill of currentHeroSkills;">
-        {{skill.skillName}}
-        <div *ngIf="skillValue.errors?.pattern">
-            Value should be numeric
-        </div>
-        <div *ngIf="skillValue.errors?.required">
-            Value shouldn't be empty
-        </div>
-        <input required pattern="^[0-9]*$" #skillValue="ngModel" placeholder="Give the value" name="{{skill.skillId}}"  [(ngModel)]="skill.value">
-    </li>
-    <button type="submit">Submit</button>
-</form>
+
     
 <router-outlet></router-outlet>
