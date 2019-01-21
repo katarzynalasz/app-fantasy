@@ -12,7 +12,6 @@ import { IHero } from '../heroes/hero';
   styleUrls: ['./actions-list.component.css']
 })
 export class ActionsListComponent implements OnInit {
-  private sub: any;
   private parentRouteId: number;
   heroConditionalActions: any;
   currentHeroSkills: any;
