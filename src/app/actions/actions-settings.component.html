@@ -1,0 +1,35 @@
+<form #addActionForm="ngForm" (ngSubmit)="addAction(addActionForm.value)">
+  <input name="actionName" ngModel placeholder="Add your own action">
+  <input name="dicesQuantity" ngModel="dicesQuantity" placeholder="Dices quantity"> *
+  <ng-select ngModel name="diceType" placeholder="Choose dice type">
+    <ng-option *ngFor="let dice of DICES" [value]="dice.value">{{dice.name}}</ng-option>
+  </ng-select> +
+  <ng-select [items]="currentHeroSkills"
+           bindLabel="skillName"
+           bindValue="skillId"
+           name='assignSkillId'
+           ngModel>
+</ng-select>
+<button type="submit">
+  Add new action
+</button>
+</form>
+
+<form (ngSubmit)="editActions()">
+  <div *ngFor="let action of currentActionsSettings">
+    <input [(ngModel)]="action.actionName"   [ngModelOptions]="{standalone: true}">
+    <input [(ngModel)]="action.dicesQuantity" placeholder="Dices quantity" [ngModelOptions]="{standalone: true}" > *
+    <ng-select [(ngModel)]="action.diceType" bindValue="action.diceType" [ngModelOptions]="{standalone: true}">
+      <ng-option *ngFor="let dice of DICES" [value]="dice.value">{{dice.name}}</ng-option>
+    </ng-select> +
+    <ng-select [items]="currentHeroSkills"
+            bindLabel="skillName"
+            bindValue="skillId"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="action.assignSkillId">
+    </ng-select>
+  </div>
+  <button type="submit">
+    Submit
+  </button>
+</form> 
