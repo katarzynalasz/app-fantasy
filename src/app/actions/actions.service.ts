@@ -6,50 +6,54 @@ import { IActionListSettings, IAction } from './action';
 export class ActionsService {
     getConditionalActions(currentHeroSkills) {
         const conditionalActions = ACTIONS.filter(element => !!element.assignSkillId);
-            const arr = [];
-            conditionalActions.map(function(x) {
-                const result = currentHeroSkills.find(a1 => ((a1.skillId === x.assignSkillId)));
-                if (typeof result === 'object') {arr.push( Object.assign(x, result)); }
-            });
-            return arr;
+        const arr = [];
+        conditionalActions.map(function(x) {
+            const result = currentHeroSkills.find(a1 => ((a1.skillId === x.assignSkillId)));
+            if (typeof result === 'object') {arr.push( Object.assign(x, result)); }
+        });
+        return arr;
     }
 
-    getActionsSettings(currentHeroId) {
-      const currentHeroActionListSettings = ACTION_LIST_SETTINGS.filter(element => element.heroId === currentHeroId)
-      return currentHeroActionListSettings;
+    getActionsSettings(currentHeroSkills) {
+        const arr = [];
+        ACTION_LIST_SETTINGS.map(function(x) {
+            const result = currentHeroSkills.find(a1 => ((a1.skillId === x.assignSkillId)));
+            if (typeof result === 'object') {arr.push( Object.assign(x, result)); }
+        });
+        return arr;
     }
 
-    addAction(formValues) {
+    refreshActionsSettings(heroId) {
+        return  ACTION_LIST_SETTINGS.filter(element => element.heroId === heroId);
+    }
 
+    addAction(formValues, heroId) {
         const action: IActionListSettings = {
             actionId: ACTION_LIST_SETTINGS.length + 1,
             actionName: formValues.actionName,
             dicesQuantity: +formValues.dicesQuantity,
             diceType: +formValues.diceType,
-            assignSkillId: +formValues.assignSkillId
+            assignSkillId: +formValues.assignSkillId,
+            heroId: heroId
         };
         ACTION_LIST_SETTINGS.push(action);
     }
 
-    updateActionsStatistics(currentActionsSettings){
+    updateActionsStatistics(currentActionsSettings) {
         currentActionsSettings.forEach(element => {
-            element.dicesQuantity = Number(element.dicesQuantity)
+            element.dicesQuantity = Number(element.dicesQuantity);
         });
 
         ACTION_LIST_SETTINGS.forEach(element => {
           currentActionsSettings.forEach(item => {
-              if (item.actionId === element.actionId && item.heroId ===element.heroId) {
-                    Object.assign(element, item)
+              if (item.actionId === element.actionId && item.heroId === element.heroId) {
+                    Object.assign(element, item);
               }
           });
       });
-      console.log(ACTION_LIST_SETTINGS)
       return ACTION_LIST_SETTINGS;
-
-
     }
 }
-
 
 const ACTIONS: IAction[] = [
     {

@@ -1,15 +1,11 @@
-import { HeroesService } from './../heroes/heroes.service';
 import { SkillsService } from './../skills/skills.service';
 import { ActionsService } from './actions.service';
 import { Component, OnInit } from '@angular/core';
-import { ILocation } from 'selenium-webdriver';
 import { ActivatedRoute } from '@angular/router';
-import { IHero } from '../heroes/hero';
 
 @Component({
   selector: 'app-actions-list',
-  templateUrl: './actions-list.component.html',
-  styleUrls: ['./actions-list.component.css']
+  templateUrl: './actions-list.component.html'
 })
 export class ActionsListComponent implements OnInit {
   private parentRouteId: number;
@@ -22,33 +18,31 @@ export class ActionsListComponent implements OnInit {
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      this.parentRouteId = +params["id"];
+      this.parentRouteId = +params['id'];
     });
-
     const currentHeroSkills = this.skillsService.getSkills(this.parentRouteId);
     const heroConditionalActions = this.actionsService.getConditionalActions(currentHeroSkills);
-    const actionSettings = this.actionsService.getActionsSettings(this.parentRouteId);
+    const actionSettings = this.actionsService.getActionsSettings(currentHeroSkills);
     this.completeActionsList = heroConditionalActions.concat(actionSettings);
-    console.log(this.completeActionsList);
   }
 
   logRollDice(action) {
     this.showLogs = true;
 
-    if (action.hasOwnProperty('value')) {   // czy tak mogę??
+    if (!action.hasOwnProperty('diceType')) {   // czy tak mogę??
       const rollResult = this.rollDices(1, 100, 0);
-     const actionSucceeded = action.value > rollResult ? 'true' : 'false';
+     const actionSucceeded = action.value < rollResult ? 'true' : 'false';
      action.actionSucceeded = actionSucceeded;
+     action.rollResult = rollResult;
     } else {
-      const rollResult = this.rollDices(action.dicesQuantity, action.diceType, 0);
+      const rollResult = this.rollDices(action.dicesQuantity, action.diceType, 0) + action.value;
       action.rollResult = rollResult;
     }
     const newAction = Object.assign({}, action);
     this.actionsLog.push(newAction);
-    console.log(this.actionsLog)
   }
 
-  rollDices(dicesQuantity: number, diceType: number, modifier: number) {
+  rollDices(dicesQuantity: number, diceType: number, modifier: number): number {
     const min = 1;
     let sum = 0;
     for (let i = 0; i < dicesQuantity; i++) {

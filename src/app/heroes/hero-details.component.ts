@@ -12,7 +12,6 @@ export class HeroDetailsComponent implements OnInit {
   getSkills: Array<any>;
   currentHeroSkills;
 
-  
   constructor(private heroesService: HeroesService,
     private route: ActivatedRoute,
     private skillService: SkillsService

@@ -1,23 +1,22 @@
 <li *ngFor="let action of completeActionsList" (click)="logRollDice(action)">
   {{action.actionName}}
-
-  </li>
-  <div>
-   LOG FOR ROLLS OF DICES
-  </div>
-
-
+</li>
+<h2>
+  LOG FOR ROLLS OF DICES
+</h2>
 <div *ngIf="showLogs">
   <div *ngFor="let action of actionsLog">
-  {{action.actionName}}
-  <div *ngIf="action.actionSucceeded === 'true'">
-    Action succeeded.
-  </div>
-  <div *ngIf="action.actionSucceeded === 'false'">
-    Action failed
-   </div>
-   <div *ngIf="action.rollResult">
-    {{action.rollResult}}
-   </div>
+    <strong>
+        {{action.actionName}}
+    </strong>
+    <span *ngIf="action.actionSucceeded === 'true'">
+      Action succeeded. Roll result: {{action.rollResult}}
+    </span>
+    <span *ngIf="action.actionSucceeded === 'false'">
+      Action failed. Roll result: {{action.rollResult}}
+    </span>
+    <span *ngIf="action.diceType">
+      {{action.rollResult}}
+    </span>
   </div>
 </div>
