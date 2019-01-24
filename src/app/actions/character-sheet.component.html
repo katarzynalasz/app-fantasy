@@ -9,5 +9,5 @@
       </div>
       <input required pattern="^[0-9]*$" #skillValue="ngModel" placeholder="Give the value" name="{{skill.skillId}}"  [(ngModel)]="skill.value">
   </li>
-  <button type="submit">Submit</button>
+  <button type="submit" [disabled]="!skillsForm.form.valid">Submit</button>
 </form>
