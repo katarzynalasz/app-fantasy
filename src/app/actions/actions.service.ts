@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { IActionListSettings } from './action';
+import { IActionListSettings, IAction } from './action';
 
 @Injectable()
 
 export class ActionsService {
     getConditionalActions(currentHeroSkills) {
         const conditionalActions = ACTIONS.filter(element => !!element.assignSkillId);
-            var arr =[];
+            const arr = [];
             conditionalActions.map(function(x) {
                 const result = currentHeroSkills.find(a1 => ((a1.skillId === x.assignSkillId)));
-                console.log(result)
-                if (typeof result === 'object') {arr.push( Object.assign(x,result))}
+                if (typeof result === 'object') {arr.push( Object.assign(x, result)); }
             });
             return arr;
+    }
+
+    getActionsSettings(currentHeroId) {
+      const currentHeroActionListSettings = ACTION_LIST_SETTINGS.filter(element => element.heroId === currentHeroId)
+      return currentHeroActionListSettings;
     }
 
     addAction(formValues) {
@@ -25,10 +29,29 @@ export class ActionsService {
             assignSkillId: +formValues.assignSkillId
         };
         ACTION_LIST_SETTINGS.push(action);
-        console.log(ACTION_LIST_SETTINGS)
+    }
+
+    updateActionsStatistics(currentActionsSettings){
+        currentActionsSettings.forEach(element => {
+            element.dicesQuantity = Number(element.dicesQuantity)
+        });
+
+        ACTION_LIST_SETTINGS.forEach(element => {
+          currentActionsSettings.forEach(item => {
+              if (item.actionId === element.actionId && item.heroId ===element.heroId) {
+                    Object.assign(element, item)
+              }
+          });
+      });
+      console.log(ACTION_LIST_SETTINGS)
+      return ACTION_LIST_SETTINGS;
+
+
     }
 }
-const ACTIONS = [
+
+
+const ACTIONS: IAction[] = [
     {
         actionId: 1,
         actionName: 'Cast a spell',
@@ -46,12 +69,30 @@ const ACTIONS = [
     }
 ];
 
-const ACTION_LIST_SETTINGS = [
+const ACTION_LIST_SETTINGS: IActionListSettings[] = [
     {
         actionId: 1,
         actionName: 'New action type',
         dicesQuantity: 2,
         diceType: 2,
-        assignSkillId: 1
+        assignSkillId: 1,
+        heroId: 1
+    },
+    {
+        actionId: 2,
+        actionName: 'New action type 2',
+        dicesQuantity: 3,
+        diceType: 5,
+        assignSkillId: 3,
+        heroId: 1
+    },
+    {
+        actionId: 3,
+        actionName: 'New action type 3',
+        dicesQuantity: 8,
+        diceType: 4,
+        assignSkillId: 2,
+        heroId: 2
     }
-]
+];
+

@@ -13,12 +13,9 @@ import { IHero } from '../heroes/hero';
 })
 export class ActionsListComponent implements OnInit {
   private parentRouteId: number;
-  heroConditionalActions: any;
-  currentHeroSkills: any;
   actionsLog = [];
   showLogs = false;
-
-
+  completeActionsList;
   constructor( private actionsService: ActionsService,
     private skillsService: SkillsService,
     private route: ActivatedRoute) {}
@@ -28,17 +25,27 @@ export class ActionsListComponent implements OnInit {
       this.parentRouteId = +params["id"];
     });
 
-    this.currentHeroSkills = this.skillsService.getSkills(this.parentRouteId);
-    this.heroConditionalActions = this.actionsService.getConditionalActions(this.currentHeroSkills);
+    const currentHeroSkills = this.skillsService.getSkills(this.parentRouteId);
+    const heroConditionalActions = this.actionsService.getConditionalActions(currentHeroSkills);
+    const actionSettings = this.actionsService.getActionsSettings(this.parentRouteId);
+    this.completeActionsList = heroConditionalActions.concat(actionSettings);
+    console.log(this.completeActionsList);
   }
 
   logRollDice(action) {
+    this.showLogs = true;
+
+    if (action.hasOwnProperty('value')) {   // czy tak mogę??
       const rollResult = this.rollDices(1, 100, 0);
      const actionSucceeded = action.value > rollResult ? 'true' : 'false';
      action.actionSucceeded = actionSucceeded;
-     const newAction = Object.assign({}, action);
-     this.actionsLog.push(newAction);
-     this.showLogs = true;
+    } else {
+      const rollResult = this.rollDices(action.dicesQuantity, action.diceType, 0);
+      action.rollResult = rollResult;
+    }
+    const newAction = Object.assign({}, action);
+    this.actionsLog.push(newAction);
+    console.log(this.actionsLog)
   }
 
   rollDices(dicesQuantity: number, diceType: number, modifier: number) {
