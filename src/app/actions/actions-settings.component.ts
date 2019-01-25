@@ -6,7 +6,7 @@ import { ActionsService } from './actions.service';
 @Component({
   selector: 'app-actions-settings',
   templateUrl: './actions-settings.component.html',
-  styleUrls: ['./actions-settings.component.css']
+  styleUrls: ['./actions-settings.component.scss']
 })
 
 export class ActionsSettingsComponent implements OnInit {
