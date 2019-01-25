@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IHero } from './hero';
 
 @Component({
-  templateUrl: './hero-details.component.html'
+  templateUrl: './hero-details.component.html',
+  styleUrls: ['./hero-details.component.scss']
 })
 export class HeroDetailsComponent implements OnInit {
   hero: IHero;
