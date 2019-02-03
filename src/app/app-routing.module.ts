@@ -11,7 +11,7 @@ import { GamesComponent } from './games/games.component';
 export const routes: Routes = [
   { path: 'games', component: GamesComponent },
   { path: 'games/:id', component: HeroesListComponent },
-  { path: 'heroes/:id',
+  { path: 'games/:id/heroes/:id2',
     component: HeroDetailsComponent,
     children: [
       {
