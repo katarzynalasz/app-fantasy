@@ -23,6 +23,7 @@ export class SkillsService {
 
 
 }
+// TO DO: mistrz gry ma mozliwosc dodania do gry wybranych skili z listy
 
 const SKILLS: ISkill[] = [
     {

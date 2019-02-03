@@ -1,4 +1,5 @@
 export interface IHero {
-    heroId: number;
-    heroName: string;
+    id?: number;
+    gameId: number;
+    name: string;
   }

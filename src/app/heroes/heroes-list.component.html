@@ -2,6 +2,6 @@
     <input name="heroName" ngModel placeholder="Add hero"> 
     <button>Submit</button>    
 </form>
-<li *ngFor="let hero of heroes"  [routerLink]="['/heroes', hero.heroId]">
-    {{hero.heroName}}
+<li *ngFor="let hero of heroes"  [routerLink]="['/heroes', hero.id]">
+    {{hero.name}}
 </li>

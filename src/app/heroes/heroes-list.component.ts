@@ -10,11 +10,15 @@ import { IHero } from './hero';
 export class HeroesListComponent {
   heroes: IHero[];
   constructor(private heroesService: HeroesService) {
-    this.heroes = this.heroesService.getHeroes();
+   this.heroesService.getHeroes().subscribe(x => {
+    this.heroes = x;
+    });
    }
 
   addHero(formValues) {
-    this.heroesService.addHero(formValues);
+    this.heroesService.addHero(formValues).subscribe(x => {
+      this.heroes.push(x);
+      });
   }
 
 }

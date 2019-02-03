@@ -16,6 +16,7 @@ import { ActionsService } from './actions/actions.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CharacterSheetComponent } from './actions/character-sheet.component';
 import { ActionsSettingsComponent } from './actions/actions-settings.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ActionsSettingsComponent } from './actions/actions-settings.component';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [SkillsService,
   HeroesService,
