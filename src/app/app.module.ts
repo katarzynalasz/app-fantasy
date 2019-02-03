@@ -1,3 +1,4 @@
+import { GamesService } from './games/games.service';
 import { CommonModule } from '@angular/common';
 import { HeroesService } from './heroes/heroes.service';
 import { SkillsService } from './skills/skills.service';
@@ -17,6 +18,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CharacterSheetComponent } from './actions/character-sheet.component';
 import { ActionsSettingsComponent } from './actions/actions-settings.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeroesListComponent,
     ActionsListComponent,
     CharacterSheetComponent,
-    ActionsSettingsComponent
+    ActionsSettingsComponent,
+    GamesComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -39,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [SkillsService,
   HeroesService,
+  GamesService,
   ActionsService],
   bootstrap: [AppComponent]
 })

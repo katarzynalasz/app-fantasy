@@ -6,9 +6,11 @@ import { HeroDetailsComponent } from "./heroes/hero-details.component";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes } from '@angular/router';
+import { GamesComponent } from './games/games.component';
 
 export const routes: Routes = [
-  { path: 'heroes', component: HeroesListComponent },
+  { path: 'games', component: GamesComponent },
+  { path: 'games/:id', component: HeroesListComponent },
   { path: 'heroes/:id',
     component: HeroDetailsComponent,
     children: [
@@ -31,7 +33,7 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: '', redirectTo: '/heroes', pathMatch: 'full'}
+  { path: '', redirectTo: '/games/1', pathMatch: 'full'}
 ];
 
 
