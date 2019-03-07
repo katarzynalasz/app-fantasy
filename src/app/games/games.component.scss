@@ -2,8 +2,16 @@ li {
   width: 30%;
   border: 4px solid #d60000;
   float: left;
+  position: relative;
 
   img {
     width: 100%;
+  }
+
+  .ra {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
   }
 }

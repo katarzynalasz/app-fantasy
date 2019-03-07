@@ -5,6 +5,16 @@
 @import 'node_modules/bootstrap/scss/grid';
 @import 'node_modules/rpg-awesome/scss/rpg-awesome';
 
+@font-face {
+  font-family: 'RPGAwesome';
+  src: url('./assets/fonts/rpgawesome-webfont.eot') format('embedded-opentype'),
+    url('./assets/fonts/rpgawesome-webfont.woff') format('woff'), url('./assets/fonts/rpgawesome-webfont.ttf') format('truetype'),
+    url('./assets/fonts/rpgawesome-webfont.svg') format('svg');
+  //src: url('#{$ra-font-path}/RPGAwesome.otf') format('opentype'); // used when developing fonts
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,
 ::after,
 ::before {
