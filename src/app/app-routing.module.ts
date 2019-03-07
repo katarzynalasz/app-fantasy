@@ -33,7 +33,7 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: '', redirectTo: '/games/1', pathMatch: 'full'}
+  { path: '', redirectTo: '/games', pathMatch: 'full'}
 ];
 
 
