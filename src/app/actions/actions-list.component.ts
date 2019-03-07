@@ -6,16 +6,14 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-actions-list',
   templateUrl: './actions-list.component.html',
-  styleUrls: ['./actions-list.component.scss']
+  styleUrls: ['./actions-list.component.scss'],
 })
 export class ActionsListComponent implements OnInit {
   private parentRouteId: number;
   actionsLog = [];
   showLogs = false;
   completeActionsList;
-  constructor( private actionsService: ActionsService,
-    private skillsService: SkillsService,
-    private route: ActivatedRoute) {}
+  constructor(private actionsService: ActionsService, private skillsService: SkillsService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
@@ -30,11 +28,12 @@ export class ActionsListComponent implements OnInit {
   logRollDice(action) {
     this.showLogs = true;
 
-    if (!action.hasOwnProperty('diceType')) {   // czy tak mogę??
+    if (!action.hasOwnProperty('diceType')) {
+      // czy tak mogę??
       const rollResult = this.rollDices(1, 100, 0);
-     const actionSucceeded = action.value < rollResult ? 'true' : 'false';
-     action.actionSucceeded = actionSucceeded;
-     action.rollResult = rollResult;
+      const actionSucceeded = action.value < rollResult ? 'true' : 'false';
+      action.actionSucceeded = actionSucceeded;
+      action.rollResult = rollResult;
     } else {
       const rollResult = this.rollDices(action.dicesQuantity, action.diceType, 0) + action.value;
       action.rollResult = rollResult;
@@ -47,11 +46,10 @@ export class ActionsListComponent implements OnInit {
     const min = 1;
     let sum = 0;
     for (let i = 0; i < dicesQuantity; i++) {
-      const result =  Math.floor(Math.random() * (diceType - min + 1 ) + min);
+      const result = Math.floor(Math.random() * (diceType - min + 1) + min);
       sum += result;
     }
     sum += modifier;
     return sum;
   }
 }
-

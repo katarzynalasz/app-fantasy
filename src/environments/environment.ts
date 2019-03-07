@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  ApiUrl: 'http://api.fantasy.mikel-soft.pl/api/'
+  ApiUrl: 'http://api.fantasy.mikel-soft.pl/api/',
 };
 
 /*

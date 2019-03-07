@@ -6,17 +6,13 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-character-sheet',
   templateUrl: './character-sheet.component.html',
-  styleUrls: ['./character-sheet.component.scss']
+  styleUrls: ['./character-sheet.component.scss'],
 })
 export class CharacterSheetComponent implements OnInit {
-
   currentHeroSkills;
   private parentRouteId: number;
 
-  constructor(private heroesService: HeroesService,
-    private route: ActivatedRoute,
-    private skillService: SkillsService
-    ) {}
+  constructor(private heroesService: HeroesService, private route: ActivatedRoute, private skillService: SkillsService) {}
 
   ngOnInit() {
     this.route.parent.params.subscribe(params => {

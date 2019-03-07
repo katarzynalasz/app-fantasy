@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HeroDetailsComponent } from "./heroes/hero-details.component";
+import { HeroDetailsComponent } from './heroes/hero-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HeroesListComponent } from './heroes/heroes-list.component';
@@ -28,7 +28,7 @@ import { GamesComponent } from './games/games.component';
     ActionsListComponent,
     CharacterSheetComponent,
     ActionsSettingsComponent,
-    GamesComponent
+    GamesComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -38,12 +38,9 @@ import { GamesComponent } from './games/games.component';
     ReactiveFormsModule,
     NgSelectModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [SkillsService,
-  HeroesService,
-  GamesService,
-  ActionsService],
-  bootstrap: [AppComponent]
+  providers: [SkillsService, HeroesService, GamesService, ActionsService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

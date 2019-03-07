@@ -4,13 +4,12 @@ import { throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export abstract class BaseService {
   readonly apiUrl: string = environment.ApiUrl;
 
-  constructor() {
-  }
+  constructor() {}
 
   handleError(error: HttpErrorResponse) {
     console.log(error);

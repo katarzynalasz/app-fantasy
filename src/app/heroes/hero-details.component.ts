@@ -6,12 +6,10 @@ import { IHero } from './hero';
 
 @Component({
   templateUrl: './hero-details.component.html',
-  styleUrls: ['./hero-details.component.scss']
+  styleUrls: ['./hero-details.component.scss'],
 })
 export class HeroDetailsComponent implements OnInit {
-
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
