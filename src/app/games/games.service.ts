@@ -22,4 +22,8 @@ export class GamesService extends BaseService {
   updateGames(game: Game) {
     return this.http.post(this.apiUrl + 'games', game).pipe(catchError(this.handleError));
   }
+
+  deleteGame(gameId: number) {
+    return this.http.delete(this.apiUrl + 'games/' + gameId).pipe(catchError(this.handleError));
+  }
 }

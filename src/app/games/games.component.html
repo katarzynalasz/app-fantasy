@@ -1,17 +1,25 @@
-<div *ngFor="let game of games">
+<div>
   <ul>
-    <li>
+    <li *ngFor="let game of games">
       <a [routerLink]="['/games', game.id]">
         <img src="../../assets/images/land.png" />
-        {{ game.name }}
+        <div>
+          {{ game.name }}
+        </div>
+        <input [(ngModel)]="game.name" />
       </a>
-      <i class="ra  ra-skull"></i>
+      <div class="settings">
+        <i class="ra ra-castle-flag"></i>
+        <i (click)="deleteGame(game.id)" class="ra ra-desert-skull"></i>
+      </div>
+    </li>
+    <li>
+      <div>
+        <form [formGroup]="newGameForm" (ngSubmit)="addNewGame()">
+          <input placeholder="Add new game" type="text" formControlName="name" />
+          <button type="submit" [disabled]="!newGameForm.valid">Submit</button>
+        </form>
+      </div>
     </li>
   </ul>
-</div>
-<div>
-  <form [formGroup]="newGameForm" (ngSubmit)="addNewGame()">
-    <input type="text" formControlName="name" />
-    <button type="submit" [disabled]="!newGameForm.valid">Submit</button>
-  </form>
 </div>

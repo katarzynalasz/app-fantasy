@@ -28,7 +28,13 @@ export class GamesComponent implements OnInit {
   }
 
   addNewGame() {
-    this.gamesService.updateGames(this.newGameForm.value).subscribe(x => {
+    this.gamesService.updateGames(this.newGameForm.value).subscribe(_ => {
+      this.getGames();
+    });
+  }
+
+  deleteGame(gameId: number) {
+    this.gamesService.deleteGame(gameId).subscribe(_ => {
       this.getGames();
     });
   }
