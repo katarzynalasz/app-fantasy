@@ -1,5 +1,7 @@
 import { GamesService } from './games.service';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Game } from './game';
 
 @Component({
   selector: 'app-games',
@@ -7,13 +9,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games.component.scss'],
 })
 export class GamesComponent implements OnInit {
-  games;
+  games: Game[];
 
   constructor(private gamesService: GamesService) {}
 
   ngOnInit() {
+    this.getGames();
+  }
+
+  newGameForm = new FormGroup({
+    name: new FormControl(''),
+  });
+
+  getGames() {
     this.gamesService.getGames().subscribe(x => {
       this.games = x;
+    });
+  }
+
+  addNewGame() {
+    this.gamesService.updateGames(this.newGameForm.value).subscribe(x => {
+      this.getGames();
     });
   }
 }

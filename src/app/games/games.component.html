@@ -2,8 +2,16 @@
   <ul>
     <li>
       <a [routerLink]="['/games', game.id]">
-          {{game.name}}
+        <img src="../../assets/images/land.png" />
+        {{ game.name }}
       </a>
+      <i class="ra-blade-bite"></i>
     </li>
   </ul>
+</div>
+<div>
+  <form [formGroup]="newGameForm" (ngSubmit)="addNewGame()">
+    <input type="text" formControlName="name" />
+    <button type="submit" [disabled]="!newGameForm.valid">Submit</button>
+  </form>
 </div>
