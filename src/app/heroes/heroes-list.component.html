@@ -1,7 +1,10 @@
 <form #addHeroForm="ngForm" (ngSubmit)="addHero(addHeroForm.value)">
-    <input name="heroName" ngModel placeholder="Add hero"> 
-    <button>Submit</button>    
+  <input name="name" ngModel placeholder="Add hero" />
+  <button>Submit</button>
 </form>
-<li *ngFor="let hero of heroes"  routerLink="/games/{{gameId}}/heroes/{{hero.id}}">
-    {{hero.name}}
+<li *ngFor="let hero of heroes">
+  <a routerLink="/games/{{ gameId }}/heroes/{{ hero.id }}">
+    {{ hero.name }}
+  </a>
+  <i (click)="deleteHero(hero.id)" class="ra ra-desert-skull"></i>
 </li>

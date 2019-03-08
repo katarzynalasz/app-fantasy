@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IHero } from './hero';
+import { Hero } from './hero';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -10,19 +10,19 @@ export class HeroesService extends BaseService {
     super();
   }
 
-  addHero(formValues) {
-    const Hero: IHero = {
-      gameId: 1,
-      name: formValues.heroName,
-    };
-    return this.http.post<IHero>(this.apiUrl + 'Hero', Hero).pipe(catchError(this.handleError));
+  addHero(hero: Hero) {
+    return this.http.post<Hero>(this.apiUrl + 'Hero', hero).pipe(catchError(this.handleError));
   }
 
   getHeroes() {
-    return this.http.get<IHero[]>(this.apiUrl + 'Hero').pipe(catchError(this.handleError));
+    return this.http.get<Hero[]>(this.apiUrl + 'Hero').pipe(catchError(this.handleError));
   }
 
   getHero(id: number) {
-    return this.http.get<IHero>(this.apiUrl + 'Hero/' + id).pipe(catchError(this.handleError));
+    return this.http.get<Hero>(this.apiUrl + 'Hero/' + id).pipe(catchError(this.handleError));
+  }
+
+  deleteHero(heroId: number) {
+    return this.http.delete<Hero>(this.apiUrl + 'Hero/' + heroId).pipe(catchError(this.handleError));
   }
 }
