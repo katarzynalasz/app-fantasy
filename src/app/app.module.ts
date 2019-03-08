@@ -19,6 +19,8 @@ import { CharacterSheetComponent } from './actions/character-sheet.component';
 import { ActionsSettingsComponent } from './actions/actions-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GamesComponent } from './games/games.component';
+import { ImageUploaderComponent } from './_shared/image-uploader/image-uploader.component';
+import { ImageUploaderService } from './_shared/image-uploader/image-uploader.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { GamesComponent } from './games/games.component';
     CharacterSheetComponent,
     ActionsSettingsComponent,
     GamesComponent,
+    ImageUploaderComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -40,7 +43,7 @@ import { GamesComponent } from './games/games.component';
     CommonModule,
     HttpClientModule,
   ],
-  providers: [SkillsService, HeroesService, GamesService, ActionsService],
+  providers: [SkillsService, HeroesService, GamesService, ActionsService, ImageUploaderService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

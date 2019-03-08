@@ -20,6 +20,7 @@
     </li>
     <li>
       <div>
+        <app-image-uploader></app-image-uploader>
         <form [formGroup]="newGameForm" (ngSubmit)="addNewGame()">
           <input placeholder="Add new game" type="text" formControlName="name" />
           <button type="submit" [disabled]="!newGameForm.valid">Submit</button>
