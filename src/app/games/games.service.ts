@@ -19,6 +19,10 @@ export class GamesService extends BaseService {
     return this.http.get<Game[]>(this.apiUrl + 'games').pipe(catchError(this.handleError));
   }
 
+  addGame(game: Game) {
+    return this.http.put(this.apiUrl + 'games', game).pipe(catchError(this.handleError));
+  }
+
   updateGames(game: Game) {
     return this.http.post(this.apiUrl + 'games', game).pipe(catchError(this.handleError));
   }
