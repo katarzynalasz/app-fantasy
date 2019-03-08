@@ -5,7 +5,6 @@ import { SkillsService } from './skills/skills.service';
 import { routes } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { HeroDetailsComponent } from './heroes/hero-details.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { GamesComponent } from './games/games.component';
 import { ImageUploaderComponent } from './_shared/image-uploader/image-uploader.component';
 import { ImageUploaderService } from './_shared/image-uploader/image-uploader.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,11 @@ import { ImageUploaderService } from './_shared/image-uploader/image-uploader.se
     NgSelectModule,
     CommonModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      preventDuplicates: true,
+    }),
   ],
   providers: [SkillsService, HeroesService, GamesService, ActionsService, ImageUploaderService],
   bootstrap: [AppComponent],

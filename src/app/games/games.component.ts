@@ -2,6 +2,7 @@ import { GamesService } from './games.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Game } from './game';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-games',
@@ -12,7 +13,7 @@ export class GamesComponent implements OnInit {
   games: Game[];
   selectedGameId: number;
 
-  constructor(private gamesService: GamesService) {}
+  constructor(private gamesService: GamesService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.getGames();
@@ -50,6 +51,7 @@ export class GamesComponent implements OnInit {
     this.gamesService.updateGames(game).subscribe(_ => {
       this.getGames();
       this.selectedGameId = -1;
+      this.toastr.success('New name saved');
     });
   }
 

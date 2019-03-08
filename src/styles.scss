@@ -4,6 +4,7 @@
 @import 'node_modules/bootstrap/scss/mixins';
 @import 'node_modules/bootstrap/scss/grid';
 @import 'node_modules/rpg-awesome/scss/rpg-awesome';
+@import '~ngx-toastr/toastr.css';
 
 @font-face {
   font-family: 'RPGAwesome';
@@ -106,4 +107,17 @@ input {
   border: 1px solid white;
   box-shadow: 1px 1px 3px #8a8a8a;
   font-family: 'Noto Serif', serif;
+}
+
+.toast-success {
+  background-image: none;
+
+  &::after {
+    font-family: RPGAwesome;
+    content: '\ea74';
+    left: 15px;
+    position: absolute;
+    top: 15px;
+    font-size: 22px;
+  }
 }

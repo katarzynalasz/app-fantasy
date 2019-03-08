@@ -1,7 +1,7 @@
 import { GamesService } from './../games/games.service';
 import { HeroesService } from './heroes.service';
 import { Component, OnInit } from '@angular/core';
-import { IHero, Hero } from './hero';
+import { Hero } from './hero';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
