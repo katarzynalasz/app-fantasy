@@ -1,31 +1,27 @@
-<div>
-  <ul>
-    <li *ngFor="let game of games">
-      <a [routerLink]="['/games', game.id]">
-        <img src="../../assets/images/land.png" />
-        <div *ngIf="game.id === selectedGameId ? false : true">
-          {{ game.name }}
-        </div>
-      </a>
-      <div *ngIf="game.id === selectedGameId ? true : false">
-        <form [formGroup]="editGameForm" (ngSubmit)="editGame(game)">
-          <input placeholder="Edit game name" type="text" formControlName="name" />
-          <button type="submit" [disabled]="!editGameForm.valid">Submit</button>
-        </form>
+<div class="row">
+  <div class="col-sm-4" *ngFor="let game of games">
+    <a class="game" [routerLink]="['/games', game.id]">
+      <img class="game-img" src="../../assets/images/land2.png" />
+      <div class="title" *ngIf="game.id === selectedGameId ? false : true">
+        {{ game.name }}
       </div>
-      <div class="settings">
-        <i (click)="enableGameEdit(game)" class="ra ra-castle-flag"></i>
-        <i (click)="deleteGame(game.id)" class="ra ra-desert-skull"></i>
-      </div>
-    </li>
-    <li>
-      <div>
-        <app-image-uploader></app-image-uploader>
-        <form [formGroup]="newGameForm" (ngSubmit)="addNewGame()">
-          <input placeholder="Add new game" type="text" formControlName="name" />
-          <button type="submit" [disabled]="!newGameForm.valid">Submit</button>
-        </form>
-      </div>
-    </li>
-  </ul>
+    </a>
+    <div *ngIf="game.id === selectedGameId ? true : false">
+      <form [formGroup]="editGameForm" (ngSubmit)="editGame(game)">
+        <input placeholder="Edit game name" type="text" formControlName="name" />
+        <button class="btn-default" type="submit" [disabled]="!editGameForm.valid">Save</button>
+      </form>
+    </div>
+    <div class="settings">
+      <i (click)="enableGameEdit(game)" class="ra ra-castle-flag"></i>
+      <i (click)="deleteGame(game.id)" class="ra ra-desert-skull"></i>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <app-image-uploader></app-image-uploader>
+    <form [formGroup]="newGameForm" (ngSubmit)="addNewGame()">
+      <input class="edit-input" placeholder="Add new game" type="text" formControlName="name" />
+      <button class="btn-default" type="submit" [disabled]="!newGameForm.valid">Submit</button>
+    </form>
+  </div>
 </div>
