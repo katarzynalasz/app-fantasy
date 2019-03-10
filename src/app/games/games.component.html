@@ -8,7 +8,7 @@
     </a>
     <div *ngIf="game.id === selectedGameId ? true : false">
       <form [formGroup]="editGameForm" (ngSubmit)="editGame(game)">
-        <input placeholder="Edit game name" type="text" formControlName="name" />
+        <input class="edit-input" placeholder="Edit game name" type="text" formControlName="name" />
         <button class="btn-default" type="submit" [disabled]="!editGameForm.valid">Save</button>
       </form>
     </div>

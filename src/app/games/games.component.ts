@@ -43,6 +43,7 @@ export class GamesComponent implements OnInit {
   addNewGame() {
     this.gamesService.addGame(this.newGameForm.value).subscribe(_ => {
       this.getGames();
+      this.toastr.success('New game created');
     });
   }
 
@@ -58,6 +59,7 @@ export class GamesComponent implements OnInit {
   deleteGame(gameId: number) {
     this.gamesService.deleteGame(gameId).subscribe(_ => {
       this.getGames();
+      this.toastr.success('Game deleted');
     });
   }
 }
