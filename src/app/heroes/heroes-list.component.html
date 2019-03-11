@@ -1,17 +1,17 @@
 <div *ngIf="gameWrapper?.heroes">
-  <h1 class="page-header">
-    {{ gameWrapper.game.name }}
-  </h1>
-  <button class="btn-theme btn-sm mb-1" (click)="toggleAddHero()">
-    <span *ngIf="!isNewHeroAdded">
-      Add hero
-    </span>
-    <span *ngIf="isNewHeroAdded">
-      Cancel
-    </span>
-  </button>
   <div class="row">
     <div class="col-sm-6">
+      <h1 class="page-header">
+        {{ gameWrapper.game.name }}
+      </h1>
+      <button class="btn-theme btn-sm mb-1" (click)="toggleAddHero()">
+        <span *ngIf="!isNewHeroAdded">
+          Add hero
+        </span>
+        <span *ngIf="isNewHeroAdded">
+          Cancel
+        </span>
+      </button>
       <div *ngIf="!isNewHeroAdded" class="card card-shadow">
         <div class="hero" *ngFor="let hero of gameWrapper.heroes">
           <a routerLink="/games/{{ gameId }}/heroes/{{ hero.id }}">
@@ -33,11 +33,6 @@
         </div>
         <button class="btn-default btn" [disabled]="!addHeroForm.valid">Submit</button>
       </form>
-    </div>
-    <div class="col-sm-6">
-      <img class="hero-image first" src="./../../assets/images/woman.png" />
-      <img class="hero-image" src="./../../assets/images/dwarf.png" />
-      <img class="hero-image" src="./../../assets/images/men.png" />
     </div>
   </div>
 </div>
