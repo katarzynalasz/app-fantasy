@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Games } from '../games/games';
 
 @Component({
   selector: 'app-heroes-list',
@@ -11,8 +12,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./heroes-list.component.scss'],
 })
 export class HeroesListComponent implements OnInit {
-  heroes: Hero[];
+  gameWrapper: Games;
   gameId: number;
+  RACES = ['Dragonborn', 'Dwarf', 'Eladrin', 'Elf', 'Gnome', 'Half-elf', 'Half-orc', 'Halfling', 'Human', 'Tiefling'];
+  GENDER = ['Men', 'Women'];
   constructor(
     private heroesService: HeroesService,
     private toastr: ToastrService,
@@ -24,26 +27,31 @@ export class HeroesListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.gameId = +params['id'];
     });
-    this.getHeroes();
+    this.getGame();
   }
 
-  getHeroes() {
-    this.gameService.getHeroesForGame(this.gameId).subscribe(x => {
-      this.heroes = x.heroes;
+  getGame() {
+    this.gameService.getGame(this.gameId).subscribe(x => {
+      this.gameWrapper = x;
     });
   }
 
   addHero(formValues) {
-    const hero = new Hero({ name: formValues.name, gameId: this.gameId });
+    const hero = new Hero({
+      name: formValues.name,
+      gameId: this.gameId,
+      race: formValues.race,
+      gender: formValues.gender,
+    });
     this.heroesService.addHero(hero).subscribe(x => {
-      this.heroes.push(x);
+      this.gameWrapper.heroes.push(x);
       this.toastr.success('New hero added');
     });
   }
 
   deleteHero(heroId: number) {
     this.heroesService.deleteHero(heroId).subscribe(x => {
-      this.getHeroes();
+      this.getGame();
       this.toastr.success('Hero deleted');
     });
   }

@@ -57,15 +57,11 @@ h1 {
 .card {
   background: rgba(228, 205, 123, 0.4);
   padding: 1rem 1.5rem;
-  box-shadow: 0px 6px 11px #a2a2a2;
-  border-top: 5px solid #dea80b;
+  // border-top: 5px solid #dea80b;
 }
 
-.hero-image {
-  position: absolute;
-  right: -13px;
-  top: -127px;
-  width: 242px;
+.card-shadow {
+  box-shadow: 0px 6px 11px #a2a2a2;
 }
 
 ul {
@@ -80,7 +76,7 @@ ul {
   font-style: italic;
 }
 
-input {
+.input-theme {
   font-family: 'Noto Serif', serif;
   font-size: 16px;
   border: 3px solid white;

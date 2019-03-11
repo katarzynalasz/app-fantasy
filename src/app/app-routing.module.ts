@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes } from '@angular/router';
 import { GamesComponent } from './games/games.component';
+import { Page404Component } from './errors/page404/page404.component';
 
 export const routes: Routes = [
   { path: 'games', component: GamesComponent },
@@ -15,11 +16,6 @@ export const routes: Routes = [
     path: 'games/:id/heroes/:id2',
     component: HeroDetailsComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'actions',
-        pathMatch: 'full',
-      },
       {
         path: 'actions',
         component: ActionsListComponent,
@@ -32,9 +28,16 @@ export const routes: Routes = [
         path: 'character-sheet',
         component: CharacterSheetComponent,
       },
+      {
+        path: '',
+        redirectTo: 'actions',
+        pathMatch: 'full',
+      },
+      { path: '**', component: Page404Component },
     ],
   },
   { path: '', redirectTo: '/games', pathMatch: 'full' },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({

@@ -1,10 +1,26 @@
-<form #addHeroForm="ngForm" (ngSubmit)="addHero(addHeroForm.value)">
-  <input name="name" ngModel placeholder="Add hero" />
-  <button>Submit</button>
-</form>
-<li *ngFor="let hero of heroes">
-  <a routerLink="/games/{{ gameId }}/heroes/{{ hero.id }}">
-    {{ hero.name }}
-  </a>
-  <i (click)="deleteHero(hero.id)" class="ra ra-desert-skull"></i>
-</li>
+<div class="row">
+  <div class="col-sm-6">
+    <div *ngIf="gameWrapper?.heroes" class="card card-shadow">
+      <h1>
+        {{ gameWrapper.game.name }}
+      </h1>
+      <div class="hero" *ngFor="let hero of gameWrapper.heroes">
+        <a routerLink="/games/{{ gameId }}/heroes/{{ hero.id }}">
+          {{ hero.name }}
+        </a>
+        <i (click)="deleteHero(hero.id)" class="ra ra-desert-skull"></i>
+      </div>
+    </div>
+    <form #addHeroForm="ngForm" (ngSubmit)="addHero(addHeroForm.value)">
+      <input class="input-theme" name="name" ngModel placeholder="Add hero" />
+      <ng-select [items]="RACES" name="race" ngModel> </ng-select>
+      <ng-select [items]="GENDER" name="gender" ngModel> </ng-select>
+      <button>Submit</button>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <img class="hero-image first" src="./../../assets/images/woman.png" />
+    <img class="hero-image" src="./../../assets/images/dwarf.png" />
+    <img class="hero-image" src="./../../assets/images/men.png" />
+  </div>
+</div>

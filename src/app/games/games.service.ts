@@ -11,7 +11,7 @@ export class GamesService extends BaseService {
     super();
   }
 
-  getHeroesForGame(id: number) {
+  getGame(id: number) {
     return this.http.get<Games>(this.apiUrl + 'Games/' + id).pipe(catchError(this.handleError));
   }
 

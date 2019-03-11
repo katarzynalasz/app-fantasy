@@ -22,6 +22,7 @@ import { ImageUploaderComponent } from './_shared/image-uploader/image-uploader.
 import { ImageUploaderService } from './_shared/image-uploader/image-uploader.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Page404Component } from './errors/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ActionsSettingsComponent,
     GamesComponent,
     ImageUploaderComponent,
+    Page404Component,
   ],
   imports: [
     RouterModule.forRoot(routes),

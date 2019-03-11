@@ -3,6 +3,8 @@ export class Hero {
   gameId: number;
   guid: string;
   name: string;
+  race: string;
+  gender: string;
 
   public constructor(init?: Partial<Hero>) {
     Object.assign(this, init);

@@ -1,3 +1,35 @@
 .container {
   margin-top: 2rem;
 }
+
+.menu {
+  font-family: 'Noto Serif', serif;
+  color: #a51d1d;
+  margin-bottom: 2rem;
+}
+
+.left-nav {
+  position: relative;
+  padding-left: 5rem;
+  border-bottom: 3px solid #a51d1d;
+}
+
+.menu-item {
+  display: inline-block;
+  padding: 1rem;
+  font-size: 21px;
+
+  a {
+    color: #a51d1d;
+  }
+}
+
+.main-icon {
+  font-size: 70px;
+  padding: 0;
+  line-height: 1rem;
+  position: absolute;
+  left: -3px;
+  bottom: -3px;
+  display: inline-block;
+}
