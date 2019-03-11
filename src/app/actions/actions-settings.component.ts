@@ -24,7 +24,7 @@ export class ActionsSettingsComponent implements OnInit {
   private parentRouteId: number;
   currentHeroSkills;
   currentActionsSettings;
-
+  isNewActionAdded: boolean = false;
   constructor(private route: ActivatedRoute, private skillsService: SkillsService, private actionService: ActionsService) {}
 
   ngOnInit() {
@@ -35,6 +35,10 @@ export class ActionsSettingsComponent implements OnInit {
     this.currentHeroSkills = heroSkills.map(a => Object.assign({}, a));
     const actionsSettings = this.actionService.getActionsSettings(this.currentHeroSkills);
     this.currentActionsSettings = actionsSettings.map(a => Object.assign({}, a));
+  }
+
+  toggleAddAction() {
+    this.isNewActionAdded = !this.isNewActionAdded;
   }
 
   editActions() {

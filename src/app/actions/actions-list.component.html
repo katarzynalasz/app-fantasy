@@ -1,42 +1,30 @@
 <div class="row">
   <div class="col-sm">
-      <div class="card">
-          <img class="hero-image" src="./../../assets/images/dwarf.png">
-          <h1>
-            Take an action
-          </h1>
-          <div class="subtitle">
-                Throw the dices and meet your destiny
-          </div>
-          <img class="divider" src='./../../assets/images/divider.svg'>
-          <ul class="action-list">
-              <li *ngFor="let action of completeActionsList" (click)="logRollDice(action)">
-                  <a>
-                      {{action.actionName}}
-                  </a>
-                </li>
-          </ul>
-        </div>
-  </div>
-  <div class="col-sm">
-      <h1>
-          LOG FOR ROLLS OF DICES
-        </h1>
-        <div *ngIf="showLogs">
-          <div *ngFor="let action of actionsLog">
-            <strong>
-                {{action.actionName}}
-            </strong>
-            <span *ngIf="action.actionSucceeded === 'true'">
-              Action succeeded. Roll result: {{action.rollResult}}
-            </span>
-            <span *ngIf="action.actionSucceeded === 'false'">
-              Action failed. Roll result: {{action.rollResult}}
-            </span>
-            <span *ngIf="action.diceType">
-              {{action.rollResult}}
-            </span>
-          </div>
-        </div>
+    <div class="card">
+      <ul class="action-list">
+        <li *ngFor="let action of completeActionsList" (click)="logRollDice(action)">
+          <a>
+            {{ action.actionName }}
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
+  <div class="col-sm bg-yellow">
+    <h1 class="page-header">
+      LOG FOR ROLLS OF DICES
+    </h1>
+    <div *ngIf="showLogs">
+      <div *ngFor="let action of actionsLog">
+        <strong>
+          {{ action.actionName }}
+        </strong>
+        <span *ngIf="action.actionSucceeded === 'true'"> Action succeeded. Roll result: {{ action.rollResult }} </span>
+        <span *ngIf="action.actionSucceeded === 'false'"> Action failed. Roll result: {{ action.rollResult }} </span>
+        <span *ngIf="action.diceType">
+          {{ action.rollResult }}
+        </span>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,36 +1,37 @@
 <div class="row">
-    <div class="col-sm-7">
-        <div class="card">
-            <h1>
-                Upgrade your skills
-            </h1>
-            <div class="subtitle">
-               Throwing your bow is just as effective as shooting
+  <div class="col-sm-7">
+    <div class="card">
+      <form autocomplete="off" #skillsForm="ngForm" (ngSubmit)="editSkills()">
+        <div class="row" *ngFor="let skill of currentHeroSkills">
+          <div class="col-md-3">
+            <div class="input-label text-right">
+              {{ skill.skillName }}
             </div>
-            <img class="divider" src='./../../assets/images/divider.svg'>
-            <form autocomplete="off" #skillsForm="ngForm" (ngSubmit)="editSkills()">
-                <div class="row" *ngFor="let skill of currentHeroSkills;">
-                    <div class="col-md-3">
-                        <div class="input-label text-right">
-                                {{skill.skillName}}
-                        </div>
-                        <div *ngIf="!!skillValue.errors?.pattern">
-                            Value should be numeric
-                        </div>
-                        <div *ngIf="!!skillValue.errors?.required">
-                            Value shouldn't be empty
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <input required pattern="^[0-9]*$" #skillValue="ngModel" placeholder="Give the value" name="{{skill.skillId}}"  [(ngModel)]="skill.value">
-                    </div>            
-                </div>
-                <div class="row">
-                    <div class="offset-sm-3 col-sm-9">
-                        <button type="submit" class="btn-default" [disabled]="!skillsForm.form.valid">Submit</button>
-                    </div>
-                </div>
-            </form>
+            <div *ngIf="!!skillValue.errors?.pattern">
+              Value should be numeric
+            </div>
+            <div *ngIf="!!skillValue.errors?.required">
+              Value shouldn't be empty
+            </div>
+          </div>
+          <div class="col-md-9">
+            <input
+              class="input-theme"
+              required
+              pattern="^[0-9]*$"
+              #skillValue="ngModel"
+              placeholder="Give the value"
+              name="{{ skill.skillId }}"
+              [(ngModel)]="skill.value"
+            />
+          </div>
         </div>
+        <div class="row">
+          <div class="offset-sm-3 col-sm-9">
+            <button type="submit" class="btn btn-default" [disabled]="!skillsForm.form.valid">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

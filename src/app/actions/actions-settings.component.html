@@ -1,87 +1,148 @@
 <div class="card">
-  <h1>
-    Add new action
-  </h1>
-  <div class="subtitle">
-    One who doesn't throw the dice can never expect to score a six
+  <button class="btn-theme btn-sm" (click)="toggleAddAction()">
+    <span *ngIf="!isNewActionAdded">
+      Add action
+    </span>
+    <span *ngIf="isNewActionAdded">
+      Cancel
+    </span>
+  </button>
+  <div *ngIf="!isNewActionAdded">
+    <h1 class="page-header">
+      Edit actions
+    </h1>
+    <form autocomplete="off" #editForm="ngForm" (ngSubmit)="editActions()">
+      <div class="row" *ngFor="let action of currentActionsSettings">
+        <div class="col-12">
+          <div
+            class="error"
+            *ngIf="
+              !!editActionName.errors?.required ||
+              !!actionDicesQuantity.errors?.required ||
+              !!editDiceType.errors?.required ||
+              !!editSkillId.errors?.required
+            "
+          >
+            Value shouldn't be empty
+          </div>
+          <div class="error" *ngIf="!!actionDicesQuantity.errors?.pattern && !!actionDicesQuantity.dirty">
+            Value should be numeric
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <input class="input-theme" #editActionName="ngModel" required [(ngModel)]="action.actionName" name="{{ action.actionName }}" />
+        </div>
+        <div class="col-sm-2">
+          <input
+            class="input-theme"
+            #actionDicesQuantity="ngModel"
+            pattern="^[0-9]*$"
+            required
+            [(ngModel)]="action.dicesQuantity"
+            placeholder="Dices quantity"
+            name="{{ action.dicesQuantity }}"
+          />
+        </div>
+        <div class="col-sm-auto">
+          *
+        </div>
+        <div class="col-sm-2">
+          <ng-select
+            class="select-theme"
+            #editDiceType="ngModel"
+            required
+            [(ngModel)]="action.diceType"
+            bindValue="action.diceType"
+            name="{{ action.diceType }}"
+          >
+            <ng-option *ngFor="let dice of DICES" [value]="dice.value">{{ dice.name }}</ng-option>
+          </ng-select>
+        </div>
+        <div class="col-sm-auto">
+          +
+        </div>
+        <div class="col-sm-3">
+          <ng-select
+            class="select-theme"
+            #editSkillId="ngModel"
+            required
+            [items]="currentHeroSkills"
+            bindLabel="skillName"
+            bindValue="skillId"
+            name="{{ action.assignSkillId }}"
+            [(ngModel)]="action.assignSkillId"
+          >
+          </ng-select>
+        </div>
+      </div>
+      <button class="btn btn-default" type="submit" [disabled]="!editForm.form.valid">
+        Submit
+      </button>
+    </form>
   </div>
-  <img class="divider" src='./../../assets/images/divider.svg'>
-  <form class="row" #addActionForm="ngForm" (ngSubmit)="addAction(addActionForm.value)">
-    <div class="col-12">
-      <div class="error" *ngIf="(!!actionName.errors?.required || !!dicesQuantity.errors?.required || !!diceType.errors?.required || !!skillId.errors?.required) && addActionForm.form.dirty">
-        Value shouldn't be empty
-      </div>
-      <div class="error" *ngIf="!!dicesQuantity.errors?.pattern">
-        Value should be numeric
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <input required #actionName="ngModel" name="actionName" ngModel placeholder="Add your own action">
-    </div>
-    <div class="col-sm-2">
-      <input pattern="^[0-9]*$" required #dicesQuantity="ngModel" name="dicesQuantity" ngModel placeholder="Dices quantity">
-    </div>
-    <div class="col-sm-auto">
-      *
-    </div>
-    <div class="col-sm-2">
-      <ng-select #diceType="ngModel" required ngModel name="diceType" placeholder="Choose dice type">
-        <ng-option *ngFor="let dice of DICES" [value]="dice.value">{{dice.name}}</ng-option>
-      </ng-select>
-    </div>
-    <div class="col-sm-auto">
-      +
-    </div>
-    <div class="col-sm-3">
-      <ng-select [items]="currentHeroSkills" bindLabel="skillName" bindValue="skillId" name='assignSkillId' ngModel
-        required #skillId="ngModel">
-      </ng-select>
-    </div>
-
-    <button type="submit" [disabled]="!addActionForm.form.valid">
+  <div *ngIf="isNewActionAdded">
+    <h1 class="page-header">
       Add new action
-    </button>
-  </form>
-  <h1>
-    Or edit existing one
-  </h1>
-  <img class="divider" src='./../../assets/images/divider.svg'>
-  <form autocomplete="off" #editForm="ngForm" (ngSubmit)="editActions()">
-    <div class="row" *ngFor="let action of currentActionsSettings">
+    </h1>
+    <form class="row" #addActionForm="ngForm" (ngSubmit)="addAction(addActionForm.value)">
       <div class="col-12">
-        <div class="error" *ngIf="!!editActionName.errors?.required || !!actionDicesQuantity.errors?.required || !!editDiceType.errors?.required || !!editSkillId.errors?.required">
+        <div
+          class="error"
+          *ngIf="
+            (!!actionName.errors?.required ||
+              !!dicesQuantity.errors?.required ||
+              !!diceType.errors?.required ||
+              !!skillId.errors?.required) &&
+            addActionForm.form.dirty
+          "
+        >
           Value shouldn't be empty
         </div>
-        <div class="error" *ngIf="!!actionDicesQuantity.errors?.pattern && !!actionDicesQuantity.dirty">
+        <div class="error" *ngIf="!!dicesQuantity.errors?.pattern">
           Value should be numeric
         </div>
       </div>
       <div class="col-sm-3">
-        <input #editActionName="ngModel" required [(ngModel)]="action.actionName" name={{action.actionName}}>
+        <input class="input-theme" required #actionName="ngModel" name="actionName" ngModel placeholder="Add your own action" />
       </div>
       <div class="col-sm-2">
-        <input #actionDicesQuantity="ngModel" pattern="^[0-9]*$" required [(ngModel)]="action.dicesQuantity"
-          placeholder="Dices quantity" name={{action.dicesQuantity}}>
+        <input
+          class="input-theme"
+          pattern="^[0-9]*$"
+          required
+          #dicesQuantity="ngModel"
+          name="dicesQuantity"
+          ngModel
+          placeholder="Dices quantity"
+        />
       </div>
       <div class="col-sm-auto">
         *
       </div>
       <div class="col-sm-2">
-        <ng-select #editDiceType="ngModel" required [(ngModel)]="action.diceType" bindValue="action.diceType" name={{action.diceType}}>
-          <ng-option *ngFor="let dice of DICES" [value]="dice.value">{{dice.name}}</ng-option>
+        <ng-select class="select-theme" #diceType="ngModel" required ngModel name="diceType" placeholder="Choose dice type">
+          <ng-option *ngFor="let dice of DICES" [value]="dice.value">{{ dice.name }}</ng-option>
         </ng-select>
       </div>
       <div class="col-sm-auto">
         +
       </div>
       <div class="col-sm-3">
-        <ng-select #editSkillId="ngModel" required [items]="currentHeroSkills" bindLabel="skillName" bindValue="skillId"
-          name={{action.assignSkillId}} [(ngModel)]="action.assignSkillId">
+        <ng-select
+          class="select-theme"
+          [items]="currentHeroSkills"
+          bindLabel="skillName"
+          bindValue="skillId"
+          name="assignSkillId"
+          ngModel
+          required
+          #skillId="ngModel"
+        >
         </ng-select>
       </div>
-    </div>
-    <button type="submit" [disabled]="!editForm.form.valid">
-      Submit
-    </button>
-  </form>
+      <button type="submit" [disabled]="!addActionForm.form.valid">
+        Add new action
+      </button>
+    </form>
+  </div>
 </div>

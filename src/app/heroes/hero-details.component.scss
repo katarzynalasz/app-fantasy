@@ -1,17 +1,21 @@
-nav li a {
-  color: #391c12;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  background: #ede3b7;
-  font-family: 'Noto Serif', serif;
-  font-size: 14px;
-  border-right: 2px solid #e2d5a4;
-}
-
-nav ul {
-  padding: 0.5rem 0;
-}
-
-nav li {
+.list-item {
   display: inline-block;
+
+  a {
+    color: #391c12;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: #ede3b7;
+    font-family: 'Noto Serif', serif;
+    border-right: 2px solid #e2d5a4;
+
+    &.active {
+      font-weight: bold;
+      color: #a51d1d;
+    }
+  }
+}
+
+.subnav ul {
+  padding: 0.5rem 0;
 }

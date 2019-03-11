@@ -1,33 +1,20 @@
-<!-- <a routerLink="/heroes">
-    Back
-</a> -->
-<!-- <div>
-    {{hero.heroName}}
-</div> -->
-<div class="container"  style="margin-top: 180px">
-        <nav>
-                <ul>
-                    <li>
-                        <a [routerLink]="['actions']">
-                            Actions
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['character-sheet']">
-                            Characters sheet
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['actions-settings']">
-                            Actions settings
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            
-</div>
-
-
-    <div class="container">
-            <router-outlet></router-outlet>
-    </div>
+<nav class="subnav">
+  <ul>
+    <li class="list-item">
+      <a routerLinkActive="active" [routerLink]="['actions']">
+        Actions
+      </a>
+    </li>
+    <li class="list-item">
+      <a routerLinkActive="active" [routerLink]="['character-sheet']">
+        Characters sheet
+      </a>
+    </li>
+    <li class="list-item">
+      <a routerLinkActive="active" [routerLink]="['actions-settings']">
+        Actions settings
+      </a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
