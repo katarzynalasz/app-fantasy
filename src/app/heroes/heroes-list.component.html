@@ -1,26 +1,43 @@
-<div class="row">
-  <div class="col-sm-6">
-    <div *ngIf="gameWrapper?.heroes" class="card card-shadow">
-      <h1>
-        {{ gameWrapper.game.name }}
-      </h1>
-      <div class="hero" *ngFor="let hero of gameWrapper.heroes">
-        <a routerLink="/games/{{ gameId }}/heroes/{{ hero.id }}">
-          {{ hero.name }}
-        </a>
-        <i (click)="deleteHero(hero.id)" class="ra ra-desert-skull"></i>
+<div *ngIf="gameWrapper?.heroes">
+  <h1 class="page-header">
+    {{ gameWrapper.game.name }}
+  </h1>
+  <button class="btn-theme btn-sm mb-1" (click)="toggleAddHero()">
+    <span *ngIf="!isNewHeroAdded">
+      Add hero
+    </span>
+    <span *ngIf="isNewHeroAdded">
+      Cancel
+    </span>
+  </button>
+  <div class="row">
+    <div class="col-sm-6">
+      <div *ngIf="!isNewHeroAdded" class="card card-shadow">
+        <div class="hero" *ngFor="let hero of gameWrapper.heroes">
+          <a routerLink="/games/{{ gameId }}/heroes/{{ hero.id }}">
+            {{ hero.name }}
+          </a>
+          <i (click)="deleteHero(hero.id)" class="ra ra-desert-skull"></i>
+        </div>
       </div>
+      <form *ngIf="isNewHeroAdded" #addHeroForm="ngForm" (ngSubmit)="addHero(addHeroForm.value)">
+        <input required class="input-theme" name="name" ngModel placeholder="Add hero" />
+        <div class="row">
+          <div class="col-sm-6">
+            <ng-select required placeholder="Race" class="select-theme" [items]="RACES" name="race" [(ngModel)]="selectedRace"> </ng-select>
+          </div>
+          <div class="col-sm-6">
+            <ng-select required placeholder="Gender" class="select-theme" [items]="GENDER" name="gender" [(ngModel)]="selectedGender">
+            </ng-select>
+          </div>
+        </div>
+        <button class="btn-default btn" [disabled]="!addHeroForm.valid">Submit</button>
+      </form>
     </div>
-    <form #addHeroForm="ngForm" (ngSubmit)="addHero(addHeroForm.value)">
-      <input class="input-theme" name="name" ngModel placeholder="Add hero" />
-      <ng-select [items]="RACES" name="race" ngModel> </ng-select>
-      <ng-select [items]="GENDER" name="gender" ngModel> </ng-select>
-      <button>Submit</button>
-    </form>
-  </div>
-  <div class="col-sm-6">
-    <img class="hero-image first" src="./../../assets/images/woman.png" />
-    <img class="hero-image" src="./../../assets/images/dwarf.png" />
-    <img class="hero-image" src="./../../assets/images/men.png" />
+    <div class="col-sm-6">
+      <img class="hero-image first" src="./../../assets/images/woman.png" />
+      <img class="hero-image" src="./../../assets/images/dwarf.png" />
+      <img class="hero-image" src="./../../assets/images/men.png" />
+    </div>
   </div>
 </div>
