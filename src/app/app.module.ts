@@ -6,7 +6,7 @@ import { routes } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { HeroDetailsComponent } from './heroes/hero-details.component';
+import { NavComponent } from './heroes/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HeroesListComponent } from './heroes/heroes-list.component';
@@ -27,7 +27,7 @@ import { Page404Component } from './errors/page404/page404.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroDetailsComponent,
+    NavComponent,
     HeroesListComponent,
     ActionsListComponent,
     CharacterSheetComponent,
