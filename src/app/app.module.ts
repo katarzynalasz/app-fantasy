@@ -23,6 +23,7 @@ import { ImageUploaderService } from './_shared/image-uploader/image-uploader.se
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Page404Component } from './errors/page404/page404.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { Page404Component } from './errors/page404/page404.component';
     GamesComponent,
     ImageUploaderComponent,
     Page404Component,
+    LoginComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

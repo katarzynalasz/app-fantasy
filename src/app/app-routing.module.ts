@@ -1,3 +1,4 @@
+import { LoginComponent } from './auth/login/login.component';
 import { ActionsSettingsComponent } from './actions/actions-settings.component';
 import { CharacterSheetComponent } from './actions/character-sheet.component';
 import { ActionsListComponent } from './actions/actions-list.component';
@@ -36,6 +37,7 @@ export const routes: Routes = [
       { path: '**', component: Page404Component },
     ],
   },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/games', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];
