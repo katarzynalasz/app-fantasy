@@ -40,15 +40,15 @@ html {
   color: red;
 }
 
-.mb-1 {
-  margin-bottom: 1rem;
-}
-
 .page-header {
   font-family: 'Noto Serif', serif;
   color: #a51d1d;
   text-transform: uppercase;
   font-size: 1.1rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
 }
 
 .divider {
@@ -115,6 +115,7 @@ ul {
 
 .btn {
   padding: 8px 14px;
+  cursor: pointer;
 }
 
 .btn-sm {
@@ -132,4 +133,9 @@ ul {
     top: 15px;
     font-size: 22px;
   }
+}
+
+.btn-flat {
+  background: transparent;
+  border: none;
 }
