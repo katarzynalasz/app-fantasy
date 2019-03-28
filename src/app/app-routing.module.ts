@@ -9,8 +9,17 @@ import { CommonModule } from '@angular/common';
 import { Routes } from '@angular/router';
 import { GamesComponent } from './games/games.component';
 import { Page404Component } from './errors/page404/page404.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
-export const routes: Routes = [
+const NO_LAYOUT_ROUTES: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+];
+
+const MAIN_LAYOUT_ROUTES: Routes = [
+  { path: '', redirectTo: '/games', pathMatch: 'full' },
   { path: 'games', component: GamesComponent },
   { path: 'games/:id', component: HeroesListComponent },
   {
@@ -34,11 +43,20 @@ export const routes: Routes = [
         redirectTo: 'actions',
         pathMatch: 'full',
       },
-      { path: '**', component: Page404Component },
     ],
   },
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/games', pathMatch: 'full' },
+];
+
+export const APP_ROUTES: Routes = [
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: MAIN_LAYOUT_ROUTES,
+  },
+  {
+    path: '',
+    children: NO_LAYOUT_ROUTES,
+  },
   { path: '**', component: Page404Component },
 ];
 

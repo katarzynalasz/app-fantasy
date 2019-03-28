@@ -4,12 +4,11 @@ import { GamesService } from './games/games.service';
 import { CommonModule } from '@angular/common';
 import { HeroesService } from './heroes/heroes.service';
 import { SkillsService } from './skills/skills.service';
-import { routes } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavComponent } from './_shared/nav/nav.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, APP_ROUTES } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HeroesListComponent } from './heroes/heroes-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Page404Component } from './errors/page404/page404.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LocalStorageService } from './auth/local-storage.service';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +40,10 @@ import { LocalStorageService } from './auth/local-storage.service';
     ImageUploaderComponent,
     Page404Component,
     LoginComponent,
+    MainLayoutComponent,
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(APP_ROUTES),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
