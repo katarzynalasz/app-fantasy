@@ -2,7 +2,7 @@ import { ActionsSettingsComponent } from './actions/actions-settings.component';
 import { CharacterSheetComponent } from './actions/character-sheet.component';
 import { ActionsListComponent } from './actions/actions-list.component';
 import { HeroesListComponent } from './heroes/heroes-list.component';
-import { NavComponent } from './heroes/nav.component';
+import { NavComponent } from './_shared/nav/nav.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes } from '@angular/router';

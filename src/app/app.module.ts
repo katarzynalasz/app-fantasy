@@ -6,7 +6,7 @@ import { routes } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { NavComponent } from './heroes/nav.component';
+import { NavComponent } from './_shared/nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { HeroesListComponent } from './heroes/heroes-list.component';
