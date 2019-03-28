@@ -1,3 +1,5 @@
+import { AuthService } from './auth/auth.service';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { GamesService } from './games/games.service';
 import { CommonModule } from '@angular/common';
 import { HeroesService } from './heroes/heroes.service';
@@ -24,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Page404Component } from './errors/page404/page404.component';
 import { LoginComponent } from './auth/login/login.component';
+import { LocalStorageService } from './auth/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,16 @@ import { LoginComponent } from './auth/login/login.component';
       preventDuplicates: true,
     }),
   ],
-  providers: [SkillsService, HeroesService, GamesService, ActionsService, ImageUploaderService],
+  providers: [
+    SkillsService,
+    LocalStorageService,
+    AuthService,
+    AuthInterceptor,
+    HeroesService,
+    GamesService,
+    ActionsService,
+    ImageUploaderService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -37,8 +37,8 @@ export class AuthService extends BaseService {
     return this.httpClient.post(`${this.apiUrl}auth/forgot-password?email=${email}`, {}).pipe(catchError(this.handleError));
   }
 
-  refreshToken(): Observable<RefreshToken> {
-    return this.httpClient.get<RefreshToken>(`${this.apiUrl}auth/refresh-token`).pipe(catchError(this.handleError));
+  refreshToken(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}auth/refresh-token`).pipe(catchError(this.handleError));
   }
 
   getUser(): AuthUser {

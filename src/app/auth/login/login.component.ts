@@ -1,4 +1,3 @@
-
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -6,29 +5,28 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from '../local-storage.service';
 import { RolesFlags } from '../roles-flags.enum';
 import { Login } from '../login.model';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent  implements OnInit {
+export class LoginComponent implements OnInit {
   returnUrl: string;
   loginForm: FormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    private toastr: ToastrService,
     private route: ActivatedRoute,
     private localStorageService: LocalStorageService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.authService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
     const remember = this.localStorageService.getRemember();
 
     this.loginForm = new FormGroup({
@@ -53,11 +51,11 @@ export class LoginComponent  implements OnInit {
           this.navigateToDefaultRouteForRole(user);
         }
       },
-      error => this.showErrorToast(error)
+      error => this.toastr.error()
     );
   }
 
-  private navigateToDefaultRouteForRole(user: User) {
+  private navigateToDefaultRouteForRole(user) {
     if (user.roles & RolesFlags.User) {
       this.router.navigate(['/home']);
     } else if (user.roles & RolesFlags.Administrator) {
